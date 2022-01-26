@@ -1,0 +1,19 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+@import-normalize;
+
+html {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}

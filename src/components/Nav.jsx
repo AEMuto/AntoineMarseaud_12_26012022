@@ -1,15 +1,92 @@
 import logo from '../assets/logo.svg'
-import styled from 'styled-components';
-
-const TopNav = styled.div`
-  background-color: #fff;
-`
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
+import { useContext, Fragment } from 'react'
+import { UserContext } from '../utils/context'
+import Icon from './Icon'
 
 function Nav() {
+  const { userId } = useContext(UserContext)
   return (
-    <>
-      <img src={logo} alt=""/>
-    </>
+    <Fragment>
+      <TopNav>
+        <Logo src={logo} alt="" />
+        <NavLinks>
+          <NavLinkStyled to="/">Accueil</NavLinkStyled>
+          <NavLinkStyled to={`/users/${userId}`}>Profil</NavLinkStyled>
+          <NavLinkStyled to="/settings">Réglage</NavLinkStyled>
+          <NavLinkStyled to="/community">Communauté</NavLinkStyled>
+        </NavLinks>
+      </TopNav>
+      <LeftNav>
+        <Copyright>Copyright, SportSee 2020</Copyright>
+        <Icon name="meditate" button={true} />
+        <Icon name="swim" button={true} />
+        <Icon name="bike" button={true} />
+        <Icon name="barbell" button={true} />
+      </LeftNav>
+    </Fragment>
   )
 }
+
+const TopNav = styled.nav`
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  background-color: black;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5.625rem 1rem 2rem;
+`
+
+const LeftNav = styled.nav`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: calc(100vh - 90px);
+  bottom: 0;
+  left: 0;
+  background-color: black;
+`
+
+const Logo = styled.img`
+  max-width: 178px;
+  margin-right: 6rem;
+`
+
+const NavLinks = styled.div`
+  flex: 1;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //margin: 0 4rem;
+`
+
+const NavLinkStyled = styled(NavLink)`
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  &.active {
+    text-decoration: underline;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const Copyright = styled.p`
+  color: white;
+  font-size: 0.75rem;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  min-width: 140px;
+  position: absolute;
+  bottom: 7rem;
+`
+
 export default Nav

@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { UserContext } from '../utils/context'
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
   background-color: #fbfbfb;
   border-radius: 1rem;
   padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 `
 
 const Fieldset = styled.fieldset`
@@ -78,12 +78,10 @@ const Button = styled.button`
   font-size: 1.25rem;
   font-weight: 500;
   background-color: mediumaquamarine;
-  cursor: pointer;
   border-radius: 0.5rem;
   color: white;
   &:disabled,
   &:disabled:hover {
-    cursor: auto;
     border: solid 1px #74798c;
     color: #74798c;
     background: none;
@@ -94,17 +92,17 @@ const Button = styled.button`
 `
 
 function SelectUser() {
-  const [id, setId] = useState()
+  const { userId, setUserId } = useContext(UserContext)
   const navigate = useNavigate()
 
   function handleChange(e) {
     const { value } = e.target
-    setId(value)
+    setUserId(value)
   }
 
   function handleRoute(e) {
     e.preventDefault()
-    navigate(`/users/${id}`)
+    navigate(`/users/${userId}`)
   }
 
   return (
@@ -121,7 +119,7 @@ function SelectUser() {
           <LabelText>Profil 2</LabelText>
         </Label>
       </Fieldset>
-      {id ? (
+      {userId ? (
         <Button onClick={handleRoute}>C'est parti !</Button>
       ) : (
         <Button disabled>En attente...</Button>

@@ -26,11 +26,15 @@ export const GlobalStyles = createGlobalStyle`
   button {
     border: none;
     background: none;
+    cursor: pointer;
+    &:disabled,
+    &:disabled:hover {
+      cursor: auto;
+    }
   }
   
   a, a:visited {
     text-decoration: none;
-    color: black;
   }
   
 `

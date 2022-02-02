@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { icons } from '../assets/icons/icons'
+import { colors } from '../theme/colors'
 
 function getSize(size) {
   if (size === 'lg') return '8rem'
@@ -10,8 +11,9 @@ function getSize(size) {
 
 const IconWrapper = styled.div.attrs((props) => ({
   size: props.size || 'md',
-  fgColor: props.fgColor || 'red',
-  bgColor: props.bgColor || 'white',
+  fgColor: props.fgColor || colors.primary,
+  bgColor: props.bgColor || colors.white,
+  margin: props.margin || 'none',
 }))`
   background-color: ${({ bgColor }) => bgColor};
   display: flex;
@@ -20,13 +22,13 @@ const IconWrapper = styled.div.attrs((props) => ({
   border-radius: 0.375rem;
   width: ${({ size }) => getSize(size)};
   height: ${({ size }) => getSize(size)};
-  margin-bottom: 1.25rem;
+  margin: ${({ margin }) => margin};
   svg {
     fill: ${({ fgColor }) => fgColor};
   }
 `
 
-const Icon = ({ name, size, fgColor, bgColor, button }) => {
+const Icon = ({ name, size, fgColor, bgColor, margin, button }) => {
   if (button)
     return (
       <IconWrapper
@@ -35,13 +37,20 @@ const Icon = ({ name, size, fgColor, bgColor, button }) => {
         size={size}
         fgColor={fgColor}
         bgColor={bgColor}
+        margin={margin}
       >
         {icons[name]}
       </IconWrapper>
     )
   else
     return (
-      <IconWrapper name={name} size={size} fgColor={fgColor} bgColor={bgColor}>
+      <IconWrapper
+        name={name}
+        size={size}
+        fgColor={fgColor}
+        bgColor={bgColor}
+        margin={{ margin }}
+      >
         {icons[name]}
       </IconWrapper>
     )

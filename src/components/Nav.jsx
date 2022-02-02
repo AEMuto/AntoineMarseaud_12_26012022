@@ -20,10 +20,10 @@ function Nav() {
       </TopNav>
       <LeftNav>
         <Copyright>Copyright, SportSee 2020</Copyright>
-        <Icon name="meditate" button={true} />
-        <Icon name="swim" button={true} />
-        <Icon name="bike" button={true} />
-        <Icon name="barbell" button={true} />
+        <Icon name="meditate" margin="0.5rem" button={true} />
+        <Icon name="swim" margin="0.5rem" button={true} />
+        <Icon name="bike" margin="0.5rem" button={true} />
+        <Icon name="barbell" margin="0.5rem" button={true} />
       </LeftNav>
     </Fragment>
   )

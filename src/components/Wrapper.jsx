@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const MainContainer = styled.div`
+const StyledWrapper = styled.div`
   margin-top: 90px;
   margin-left: 120px;
   flex: 1;
@@ -9,8 +9,8 @@ const MainContainer = styled.div`
   padding: 4rem 5rem;
 `
 
-function Main({ children }) {
-  return <MainContainer>{children}</MainContainer>
+function Wrapper({ children }) {
+  return <StyledWrapper>{children}</StyledWrapper>
 }
 
-export default Main
+export default Wrapper

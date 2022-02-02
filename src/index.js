@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound'
 import { GlobalStyles } from './theme/GlobalStyles'
 import { UserProvider } from './utils/context'
 import Nav from './components/Nav'
-import Main from './components/Main'
+import Wrapper from './components/Wrapper'
 
 function Router() {
   return (
@@ -15,13 +15,13 @@ function Router() {
       <UserProvider>
         <GlobalStyles />
         <Nav />
-        <Main>
+        <Wrapper>
           <Routes>
             <Route path="/" element={<SelectUser />} />
             <Route path="/users/:id" element={<Profil />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Main>
+        </Wrapper>
       </UserProvider>
     </BrowserRouter>
   )

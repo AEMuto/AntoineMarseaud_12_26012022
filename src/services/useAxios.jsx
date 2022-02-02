@@ -9,6 +9,7 @@ export function useAxios(userId) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    if (!userId) return
     setIsLoading(true)
     async function getUserData() {
       try {

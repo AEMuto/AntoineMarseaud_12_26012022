@@ -5,17 +5,21 @@ import Loader from '../components/Loader'
 import Error from '../components/Error'
 import styled from 'styled-components'
 import KeyDataCard from '../components/KeyDataCard'
+import ActivityChart from '../components/Charts/ActivityChart'
+import AverageChart from '../components/Charts/AverageChart'
+import PerfChart from '../components/Charts/PerfChart'
+import ScoreChart from '../components/Charts/ScoreChart'
 
 function Profil() {
   const { userId } = useContext(UserContext)
   const { data, isLoading, error } = useAxios(userId)
-  const { firstName, todayScore, keyData, activity, average } = data
+  const { firstName, todayScore, keyData, activity, average, perf } = data
 
   if (isLoading) return <Loader />
   if (error) return <Error error={error} />
 
   const molecules = Object.keys(keyData)
-  console.log(molecules)
+
   return (
     <Container>
       <Header>
@@ -26,10 +30,14 @@ function Profil() {
       </Header>
       <Main>
         <ChartsContainer>
-          {/*Chart 1*/}
-          {/*Chart 2*/}
-          {/*Chart 3*/}
-          {/*Chart 4*/}
+          <ActivityChart
+            data={activity}
+            area="activity"
+            title="Activité quotidienne"
+          />
+          <AverageChart data={average} area="average" />
+          <PerfChart data={perf} area="perf" />
+          <ScoreChart data={todayScore} area="score" />
         </ChartsContainer>
         <KeyDataContainer>
           {molecules.map((molecule, index) => {
@@ -70,7 +78,14 @@ const Main = styled.main`
 `
 const ChartsContainer = styled.section`
   flex: 1;
-  background-color: cornflowerblue;
+  display: grid;
+  grid-template-areas:
+    'activity activity activity'
+    'average perf score';
+  grid-template-rows: 320px 263px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.875rem;
+  //background-color: cornflowerblue;
 `
 const KeyDataContainer = styled.aside`
   //flex: 1;

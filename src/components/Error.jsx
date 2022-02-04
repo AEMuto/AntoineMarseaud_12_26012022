@@ -2,10 +2,13 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function Error({ error }) {
+  console.log(error)
   return (
     <Container>
       <h1>Oups ! Il y a eu une erreur...</h1>
-      <code>Message : '{error ? error : 'Erreur de type inconnue'}'</code>
+      <code>
+        Message : '{error ? error.message : 'Erreur de type inconnue'}'
+      </code>
       <Link to="/">Retourner à la page d'accueil</Link>
     </Container>
   )

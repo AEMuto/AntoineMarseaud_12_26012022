@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { getDay } from '../utils/getDay'
 
 const URL = 'http://localhost:3000/user/'
 
@@ -14,7 +15,7 @@ export function useAxios(userId) {
     async function getUserData() {
       try {
         // Get user's info, score and key data
-        const {
+        let {
           data: {
             data: {
               userInfos: { firstName },
@@ -23,23 +24,43 @@ export function useAxios(userId) {
             },
           },
         } = await axios.get(`${URL}${userId}`)
-        // console.log(firstName, todayScore, keyData)
+
+        // Mapping todayScore for use in Chart
+        todayScore = [
+          { score: todayScore * 100 },
+          { score: 100 - todayScore * 100 },
+        ]
 
         // Get user's activity data
-        const {
+        let {
           data: {
             data: { sessions: activity },
           },
         } = await axios.get(`${URL}${userId}/activity`)
-        // console.log(activity)
+
+        // Remapping activity data for use in Chart
+        activity = activity.map((obj) => {
+          return {
+            day: obj.day[obj.day.length - 1],
+            kilogram: obj.kilogram,
+            calories: obj.calories,
+          }
+        })
 
         // Get user's average sessions data
-        const {
+        let {
           data: {
             data: { sessions: average },
           },
         } = await axios.get(`${URL}${userId}/average-sessions`)
-        // console.log(average)
+
+        // Remapping average session data for use in Chart
+        average = average.map((obj) => {
+          return {
+            day: `${getDay(obj.day)}`,
+            sessionLength: obj.sessionLength,
+          }
+        })
 
         // Get user's performance data
         const {
@@ -47,7 +68,14 @@ export function useAxios(userId) {
             data: { data: perfValues, kind: perfTypes },
           },
         } = await axios.get(`${URL}${userId}/performance`)
-        // console.log(perfValues, perfTypes)
+
+        // Remapping perf data for use in Chart
+        const perf = perfValues.map((obj) => {
+          return {
+            type: `${perfTypes[obj.kind]}`,
+            score: obj.value,
+          }
+        })
 
         const data = {
           firstName,
@@ -55,8 +83,7 @@ export function useAxios(userId) {
           keyData,
           activity,
           average,
-          perfValues,
-          perfTypes,
+          perf,
         }
 
         setData(data)

@@ -37,4 +37,8 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   
+  ul {
+    list-style: none;
+  }
+  
 `

@@ -43,7 +43,7 @@ function ActivityChart({ data, area, title, titleColor }) {
             allowEscapeViewBox={{ x: true }}
           />
           <Legend
-            wrapperStyle={{ top: 35, right: 30 }}
+            wrapperStyle={{ top: 30, right: 30 }}
             content={renderLegend}
           />
           <Bar dataKey="kilogram" fill={colors.grey4} radius={[10, 10, 0, 0]} />
@@ -74,9 +74,8 @@ const renderLegend = ({ payload }) => {
   )
 }
 
-const renderTooltip = ({ payload, label, active }) => {
+const renderTooltip = ({ payload, active }) => {
   if (active) {
-    console.log(payload, label)
     return (
       <CustomTooltip>
         <p>{payload[0].payload.kilogram}kg</p>

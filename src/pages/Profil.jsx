@@ -9,6 +9,8 @@ import ActivityChart from '../components/Charts/ActivityChart'
 import AverageChart from '../components/Charts/AverageChart'
 import PerfChart from '../components/Charts/PerfChart'
 import ScoreChart from '../components/Charts/ScoreChart'
+import { hexToRGB } from '../utils/hexToRGB'
+import { colors } from '../theme/colors'
 
 function Profil() {
   const { userId } = useContext(UserContext)
@@ -35,7 +37,12 @@ function Profil() {
             area="activity"
             title="Activité quotidienne"
           />
-          <AverageChart data={average} area="average" />
+          <AverageChart
+            data={average}
+            area="average"
+            title="Durée moyenne des sessions"
+            titleColor={hexToRGB(colors.white, 0.5)}
+          />
           <PerfChart data={perf} area="perf" />
           <ScoreChart data={todayScore} area="score" />
         </ChartsContainer>

@@ -40,8 +40,9 @@ const ChartTitle = styled.h3.attrs((props) => ({
 }))`
   position: absolute;
   color: ${({ titleColor }) => titleColor};
-  top: 25px;
+  top: 30px;
   left: 30px;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  max-width: 150px;
 `

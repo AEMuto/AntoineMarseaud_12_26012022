@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getDay } from '../utils/getDay'
 import translatePerfType from '../utils/translatePerfType'
+import { colors } from '../theme/colors'
 
 const URL = 'http://localhost:3000/user/'
 

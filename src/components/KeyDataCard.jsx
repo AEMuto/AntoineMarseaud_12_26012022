@@ -71,6 +71,7 @@ const CardWrapper = styled.div.attrs((props) => ({
   padding: ${({ padding }) => padding};
   display: flex;
   border-radius: 5px;
+  min-width: 258px;
 `
 
 const Info = styled.div`

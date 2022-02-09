@@ -6,7 +6,7 @@ const StyledWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 4rem 5rem;
+  padding: 3rem 4rem;
 `
 
 function Wrapper({ children }) {

@@ -1,28 +1,52 @@
 import ChartContainer from './ChartContainer'
-import {
-  RadialBarChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  RadialBar,
-} from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer, Label } from 'recharts'
 import { colors } from '../../theme/colors'
+import styled from 'styled-components'
 
 function ScoreChart({ data, area, title }) {
-  console.log(data)
   return (
     <ChartContainer area={area} title={title}>
+      <CustomLabel>
+        <h3>{data[0].score}%</h3>
+        <p>
+          de votre <br />
+          objectif
+        </p>
+      </CustomLabel>
       <ResponsiveContainer>
-        <RadialBarChart
-          data={dataMock}
-          startAngle={180}
-          endAngle={0}
-          innerRadius="10%"
-          outerRadius="80%"
-          background
-        >
-          <RadialBar dataKey="uv" clockWise={true} minAngle={45} />
-        </RadialBarChart>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="score"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={80}
+            outerRadius={90}
+            startAngle={90}
+            endAngle={450}
+            cornerRadius={40}
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={!index ? `${colors.primary}` : 'none'}
+              />
+            ))}
+          </Pie>
+          <Pie
+            data={data}
+            dataKey="score"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={75}
+            fill={colors.white}
+            stroke={'none'}
+            blendStroke={true}
+            isAnimationActive={false}
+          />
+        </PieChart>
       </ResponsiveContainer>
     </ChartContainer>
   )
@@ -30,45 +54,19 @@ function ScoreChart({ data, area, title }) {
 
 export default ScoreChart
 
-const dataMock = [
-  {
-    name: '18-24',
-    uv: 31.47,
-    pv: 2400,
-    fill: '#8884d8',
-  },
-  {
-    name: '18-24',
-    uv: 31.47,
-    pv: 2400,
-    fill: '#8884d8',
-  },
-]
-
-// function ScoreChart({ data, area }) {
-//   return (
-//     <ChartContainer area={area}>
-//       <ResponsiveContainer>
-//         <PieChart width={730} height={250}>
-//           <Pie
-//             data={data}
-//             dataKey="score"
-//             nameKey="name"
-//             cx="50%"
-//             cy="50%"
-//             innerRadius={60}
-//             outerRadius={80}
-//             fill={colors.pink}
-//           >
-//             {data.map((entry, index) => (
-//               <Cell
-//                 key={`cell-${index}`}
-//                 fill={!index ? `${colors.primary}` : 'lightgrey'}
-//               />
-//             ))}
-//           </Pie>
-//         </PieChart>
-//       </ResponsiveContainer>
-//     </ChartContainer>
-//   )
-// }
+const CustomLabel = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 999;
+  h3 {
+    font-size: 26px;
+  }
+  p {
+    color: ${colors.grey3};
+  }
+`

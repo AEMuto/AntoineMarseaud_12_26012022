@@ -72,7 +72,7 @@ const Container = styled.div`
 const Header = styled.header`
   h1 {
     font-size: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   span {
     color: red;
@@ -81,7 +81,11 @@ const Header = styled.header`
 const Main = styled.main`
   flex: 1;
   display: flex;
-  margin-top: 4.5rem;
+  flex-direction: row;
+  margin-top: 2rem;
+  @media (max-width: 1439px) {
+    flex-direction: column-reverse;
+  }
 `
 const ChartsContainer = styled.section`
   flex: 1;
@@ -89,8 +93,8 @@ const ChartsContainer = styled.section`
   grid-template-areas:
     'activity activity activity'
     'average perf score';
-  grid-template-rows: 320px 263px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(320px, 1fr) 263px;
+  grid-template-columns: repeat(3, minmax(258px, 1fr));
   gap: 1.875rem;
   //background-color: cornflowerblue;
 `
@@ -101,4 +105,12 @@ const KeyDataContainer = styled.aside`
   justify-content: space-between;
   min-width: 258px;
   margin-left: 1.875rem;
+  @media (max-width: 1439px) {
+    flex-direction: row;
+    margin-left: 0;
+    gap: 1rem;
+    margin-bottom: 1.875rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 `

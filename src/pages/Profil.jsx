@@ -44,7 +44,7 @@ function Profil() {
             titleColor={hexToRGB(colors.white, 0.5)}
           />
           <PerfChart data={perf} area="perf" />
-          <ScoreChart data={todayScore} area="score" />
+          <ScoreChart data={todayScore} area="score" title="Score" />
         </ChartsContainer>
         <KeyDataContainer>
           {molecules.map((molecule, index) => {

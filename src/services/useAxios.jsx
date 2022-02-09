@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getDay } from '../utils/getDay'
+import translatePerfType from '../utils/translatePerfType'
 
 const URL = 'http://localhost:3000/user/'
 
@@ -65,14 +66,14 @@ export function useAxios(userId) {
         // Get user's performance data
         const {
           data: {
-            data: { data: perfValues, kind: perfTypes },
+            data: { data: perfValues, kind: perfType },
           },
         } = await axios.get(`${URL}${userId}/performance`)
 
         // Remapping perf data for use in Chart
         const perf = perfValues.map((obj) => {
           return {
-            type: `${perfTypes[obj.kind]}`,
+            type: translatePerfType(perfType[obj.kind]),
             score: obj.value,
           }
         })

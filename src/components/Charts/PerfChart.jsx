@@ -5,11 +5,10 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from 'recharts'
 import { hexToRGB } from '../../utils/hexToRGB'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 function PerfChart({ data, area }) {
   return (
@@ -44,10 +43,19 @@ function PerfChart({ data, area }) {
   )
 }
 
+PerfChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  area: PropTypes.string,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
+}
+
 export default PerfChart
 
 /**
  * https://stackoverflow.com/questions/59361614/custom-label-on-recharts-radar-chart
+ * There is no simple and easy way to place and stylize our label on a radar chart.
+ * This function resolve this, at least partially.
  * @param payload
  * @param x
  * @param y
@@ -56,7 +64,6 @@ export default PerfChart
  * @param radius
  * @returns {JSX.Element}
  */
-
 function CustomTick({ payload, x, y, textAnchor, stroke, radius }) {
   return (
     <g className="recharts-layer recharts-polar-angle-axis-tick">
@@ -74,14 +81,18 @@ function CustomTick({ payload, x, y, textAnchor, stroke, radius }) {
   )
 }
 
-function CustomTickLabel({ value, x, dx, dy, fill }) {
-  return (
-    <tspan x={x} dx={dx} dy={dy} fill={fill}>
-      {value}
-    </tspan>
-  )
-}
-
+/**
+ * Modify the position of the labels thanks to the dx and dy property that
+ * each svg element can have. 90° is the top level label, and by default
+ * it's a bit to close to the painted Axis, so we displace it by -5 on the Y axis
+ * with dy=-5 et voilà ! Same logic for each label, for example, the bottom one
+ * is -90°, and it's also too close by default, so we translate it further
+ * down the Y axis with dy=15, etc...
+ * @param payload
+ * @param x
+ * @param fill
+ * @returns {JSX.Element}
+ */
 function placeCustomTickLabel(payload, x, fill) {
   const { coordinate, value } = payload
   switch (coordinate) {
@@ -103,4 +114,23 @@ function placeCustomTickLabel(payload, x, fill) {
       console.log('Invalid Coordinate in RadarChart')
       break
   }
+}
+
+/**
+ * CustomTickLabel.
+ * Separated tspan for increasing readability.
+ * @param value
+ * @param x
+ * @param dx
+ * @param dy
+ * @param fill
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function CustomTickLabel({ value, x, dx, dy, fill }) {
+  return (
+    <tspan x={x} dx={dx} dy={dy} fill={fill}>
+      {value}
+    </tspan>
+  )
 }

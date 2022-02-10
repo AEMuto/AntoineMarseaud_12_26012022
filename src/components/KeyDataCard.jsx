@@ -2,10 +2,18 @@ import styled from 'styled-components'
 import Icon from './Icon'
 import { colors } from '../theme/colors'
 import { hexToRGB } from '../utils/hexToRGB'
+import PropTypes from 'prop-types'
 
 function KeyDataCard({ value, type }) {
-  const { subtitle, color, icon } = parseType(type)
-
+  /**
+   * Return an object we use to style correctly the keyData Card.
+   * 'subtitle' will be used to display the molecule type.
+   * 'color' will define the fill and background color of the icon.
+   * 'icon' is the key to the look-up table /assets/icons/icons.jsx which
+   * contains all of our icon in svg format.
+   * @param type
+   * @returns {{color: string, subtitle: string, icon: string}|{color: string, subtitle: string, icon: string, title: number}}
+   */
   function parseType(type) {
     switch (type) {
       case 'calorieCount':
@@ -43,11 +51,13 @@ function KeyDataCard({ value, type }) {
     }
   }
 
+  const { subtitle, color, icon } = parseType(type)
+
   return (
     <CardWrapper>
       <Icon
         name={icon}
-        fgColor={hexToRGB(color)}
+        fgColor={hexToRGB(color, 1)}
         bgColor={hexToRGB(color, 0.1)}
       />
       <Info>
@@ -59,6 +69,11 @@ function KeyDataCard({ value, type }) {
       </Info>
     </CardWrapper>
   )
+}
+
+KeyDataCard.propTypes = {
+  value: PropTypes.number,
+  type: PropTypes.string,
 }
 
 export default KeyDataCard

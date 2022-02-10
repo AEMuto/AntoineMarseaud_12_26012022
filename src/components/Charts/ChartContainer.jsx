@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../theme/colors'
+import PropTypes from 'prop-types'
 
 function ChartContainer({
   area,
@@ -19,6 +20,18 @@ function ChartContainer({
       {children}
     </StyledChartContainer>
   )
+}
+
+ChartContainer.propTypes = {
+  area: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
+  borderRadius: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
 }
 
 export default ChartContainer

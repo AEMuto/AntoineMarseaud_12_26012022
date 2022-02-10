@@ -1,70 +1,53 @@
-# Getting Started with Create React Profil
+# General Information
 
-This project was bootstrapped with [Create React Profil](https://github.com/facebook/create-react-app).
+This is the repository containing the **front-end** code for the new user's profil page in the Sportsee web application.\
+The project use the library [recharts](https://recharts.org/) for visualizing the user's data.\
+\
+Others important dependencies are :
+- [CRA](https://create-react-app.dev/)
+- [styled-components](https://styled-components.com/)
+- [react-router](https://reactrouter.com/)
+- [axios](https://axios-http.com/)
 
-## Available Scripts
+## How to use
+The project need its API in order to fully works. But there is an option to use mock data in place of the API calls if you want to skip the installation of the backend.
 
-In the project directory, you can run:
+### 1. Launching the API
+You can refer directly to the API's [documentation](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard) for the instructions.
+Otherwise, here is a quick recap :
 
-### `npm start`
+First, we fork the repository and clone it.\
+`git clone https://github.com/[your-username]/[path-to-the-api-repo]`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Then, we move into its directory.\
+`cd [api-directory-name]`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+We want to use node 12.18. The simplest way is to use [nvm](https://github.com/nvm-sh/nvm) (click the link for installation instructions).\
+`nvm install 12.18`\
+`nvm use 12.18`\
 
-### `npm test`
+Then, we install the API's dependencies with `npm i`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Finally, we launch it with `npm start`. For the endpoints options see [the doc](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard#41-possible-endpoints).
 
-### `npm run build`
+### 2. Launching the project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Fork, clone and install.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`cd ..`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`git clone https://github.com/[your-username]/[project-name]`
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`cd [project-name]`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`nvm use 16`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+`npm i`
 
-You can learn more in the [Create React Profil documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`npm start` should return that there is already a process running on port `:3000` (our backend), so enter `y` to change the port to `:3001`.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web Profil
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If all is well you should see the homepage at `http://localhost:3001/`

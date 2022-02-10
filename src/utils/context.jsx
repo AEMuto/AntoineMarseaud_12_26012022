@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const navigate = useNavigate()
 
   /**
-   * In order to keep alive the user's ID we selected in SelectUser.jsx,
+   * In order to keep alive the user's ID we selected in the SelectUser page,
    * we use the useEffect hook with 'userId' as its dependency.
    * 'userId' is initialized as 'null' so we verify if it's present in the
    * sessionStorage. If it isn't we force navigation to the homepage where
@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
       if (!sessionUserId) navigate('/')
       else setUserId(sessionUserId)
     }
-  }, [userId])
+  }, [userId, navigate])
 
   return (
     <UserContext.Provider value={{ userId, setUserId }}>

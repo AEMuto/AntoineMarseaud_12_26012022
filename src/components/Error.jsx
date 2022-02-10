@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function Error({ error }) {
   return (
@@ -11,6 +12,10 @@ function Error({ error }) {
       <Link to="/">Retourner à la page d'accueil</Link>
     </Container>
   )
+}
+
+Error.propTypes = {
+  error: PropTypes.string.isRequired,
 }
 
 export default Error

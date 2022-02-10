@@ -11,6 +11,7 @@ import {
 import { colors } from '../../theme/colors'
 import ChartContainer from './ChartContainer'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 function ActivityChart({ data, area, title, titleColor }) {
   return (
@@ -54,8 +55,22 @@ function ActivityChart({ data, area, title, titleColor }) {
   )
 }
 
+ActivityChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  area: PropTypes.string,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
+}
+
 export default ActivityChart
 
+/**
+ * We want to render the legends in a specific way either for its style or
+ * its display name. Ex : for the calories' category we want to display 'Calories brûlées'
+ * and style it with a red dot.
+ * @param payload
+ * @returns {JSX.Element}
+ */
 const renderLegend = ({ payload }) => {
   return (
     <CustomLegend>
@@ -74,6 +89,14 @@ const renderLegend = ({ payload }) => {
   )
 }
 
+/**
+ * When the user hover above this chart we want to display a tooltip as represented
+ * on the figma rough. With recharts we can, thanks to render function we pass as a content prop
+ * to the Tooltip component. Same logic as the renderLegend above.
+ * @param payload
+ * @param active
+ * @returns {JSX.Element|null}
+ */
 const renderTooltip = ({ payload, active }) => {
   if (active) {
     return (
@@ -129,7 +152,6 @@ const CustomTooltip = styled.div`
   align-items: center;
   padding: 1rem 0.5rem;
   margin: 0 2.5rem;
-  //margin-top: -50%;
   position: relative;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
 `

@@ -1,7 +1,8 @@
 import ChartContainer from './ChartContainer'
-import { PieChart, Pie, Cell, ResponsiveContainer, Label } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { colors } from '../../theme/colors'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 function ScoreChart({ data, area, title }) {
   return (
@@ -50,6 +51,13 @@ function ScoreChart({ data, area, title }) {
       </ResponsiveContainer>
     </ChartContainer>
   )
+}
+
+ScoreChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  area: PropTypes.string,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
 }
 
 export default ScoreChart

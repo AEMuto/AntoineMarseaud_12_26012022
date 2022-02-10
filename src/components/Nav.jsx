@@ -1,9 +1,9 @@
-import logo from '../assets/logo.svg'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
 import { useContext, Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import { UserContext } from '../utils/context'
 import Icon from './Icon'
+import logo from '../assets/logo.svg'
 
 function Nav() {
   const { userId } = useContext(UserContext)
@@ -28,6 +28,8 @@ function Nav() {
     </Fragment>
   )
 }
+
+export default Nav
 
 const TopNav = styled.nav`
   position: fixed;
@@ -64,7 +66,6 @@ const NavLinks = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  //margin: 0 4rem;
 `
 
 const NavLinkStyled = styled(NavLink)`
@@ -86,7 +87,5 @@ const Copyright = styled.p`
   transform: rotate(-90deg);
   min-width: 140px;
   position: absolute;
-  bottom: 7rem;
+  bottom: 5rem;
 `
-
-export default Nav

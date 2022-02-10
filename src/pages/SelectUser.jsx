@@ -3,6 +3,74 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { UserContext } from '../utils/context'
 
+function SelectUser() {
+  const { userId, setUserId } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  /**
+   * Each time we change the user's ID we set it in the context.
+   * Albeit we lose context on page refresh, so we also store the selected
+   * user's ID in the session storage to persist it.
+   * See context.jsx to view how we retrieve it.
+   * @param e
+   */
+  function handleChange(e) {
+    const { value } = e.target
+    setUserId(value)
+    window.sessionStorage.setItem('userId', JSON.stringify(value))
+  }
+
+  function handleRoute(e) {
+    e.preventDefault()
+    navigate(`/users/${userId}`)
+  }
+
+  return (
+    <Form>
+      <Fieldset>
+        <Legend>Sélectionnez un profil utilisateur</Legend>
+        <Label>
+          <Input
+            type="radio"
+            name="id"
+            value={12}
+            checked={userId === '12'}
+            onChange={handleChange}
+          />
+          <LabelText>Profil 1</LabelText>
+        </Label>
+        <Label>
+          <Input
+            type="radio"
+            name="id"
+            value={18}
+            checked={userId === '18'}
+            onChange={handleChange}
+          />
+          <LabelText>Profil 2</LabelText>
+        </Label>
+        <Label>
+          <Input
+            type="radio"
+            name="id"
+            value="mock"
+            checked={userId === 'mock'}
+            onChange={handleChange}
+          />
+          <LabelText>Mock</LabelText>
+        </Label>
+      </Fieldset>
+      {userId ? (
+        <Button onClick={handleRoute}>C'est parti !</Button>
+      ) : (
+        <Button disabled>En attente...</Button>
+      )}
+    </Form>
+  )
+}
+
+export default SelectUser
+
 const Form = styled.form`
   background-color: #fbfbfb;
   border-radius: 1rem;
@@ -90,62 +158,3 @@ const Button = styled.button`
     background-color: darkcyan;
   }
 `
-
-function SelectUser() {
-  const { userId, setUserId } = useContext(UserContext)
-  const navigate = useNavigate()
-
-  /**
-   * Each time we change the user's ID we set it in the context.
-   * Albeit we lose context on page refresh, so we also store the selected
-   * user's ID in the session storage to persist it.
-   * See context.jsx to view how we retrieve it.
-   * @param e
-   */
-  function handleChange(e) {
-    const { value } = e.target
-    setUserId(value)
-    window.sessionStorage.setItem('userId', JSON.stringify(value))
-  }
-
-  function handleRoute(e) {
-    e.preventDefault()
-    navigate(`/users/${userId}`)
-  }
-
-  return (
-    <Form>
-      <Fieldset>
-        <Legend>Sélectionnez un profil utilisateur</Legend>
-
-        <Label>
-          <Input
-            type="radio"
-            name="id"
-            value={12}
-            checked={!!(userId == 12)}
-            onChange={handleChange}
-          />
-          <LabelText>Profil 1</LabelText>
-        </Label>
-        <Label>
-          <Input
-            type="radio"
-            name="id"
-            value={18}
-            checked={!!(userId == 18)}
-            onChange={handleChange}
-          />
-          <LabelText>Profil 2</LabelText>
-        </Label>
-      </Fieldset>
-      {userId ? (
-        <Button onClick={handleRoute}>C'est parti !</Button>
-      ) : (
-        <Button disabled>En attente...</Button>
-      )}
-    </Form>
-  )
-}
-
-export default SelectUser

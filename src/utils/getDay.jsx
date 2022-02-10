@@ -1,4 +1,11 @@
-export function getDay(value) {
+/**
+ * A utilitarian function that returns the first letter of a day (in French).
+ * It accepts any integer between 1 and 7 as its parameter, otherwise the
+ * switch log an error message in the console and breaks.
+ * @param value
+ * @returns {string}
+ */
+function getDay(value) {
   switch (value) {
     case 1:
       return 'L'
@@ -19,3 +26,5 @@ export function getDay(value) {
       break
   }
 }
+
+export default getDay

@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function Error({ error }) {
-  console.log(error)
   return (
     <Container>
       <h1>Oups ! Il y a eu une erreur...</h1>
@@ -34,7 +33,7 @@ const Container = styled.div`
   a,
   a:visited {
     color: dodgerblue;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   a:hover {
     text-decoration: underline;

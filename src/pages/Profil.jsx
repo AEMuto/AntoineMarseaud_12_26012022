@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
+import styled from 'styled-components'
 import { useAxios } from '../services/useAxios'
 import { UserContext } from '../utils/context'
 import Loader from '../components/Loader'
 import Error from '../components/Error'
-import styled from 'styled-components'
 import KeyDataCard from '../components/KeyDataCard'
 import ActivityChart from '../components/Charts/ActivityChart'
 import AverageChart from '../components/Charts/AverageChart'
@@ -75,7 +75,7 @@ const Header = styled.header`
     margin-bottom: 1rem;
   }
   span {
-    color: red;
+    color: ${colors.primary};
   }
 `
 const Main = styled.main`
@@ -93,13 +93,14 @@ const ChartsContainer = styled.section`
   grid-template-areas:
     'activity activity activity'
     'average perf score';
-  grid-template-rows: minmax(320px, 1fr) 263px;
+  grid-template-rows: 1fr 263px;
   grid-template-columns: repeat(3, minmax(258px, 1fr));
   gap: 1.875rem;
-  //background-color: cornflowerblue;
+  @media (max-width: 1439px) {
+    grid-template-rows: 320px 263px;
+  }
 `
 const KeyDataContainer = styled.aside`
-  //flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

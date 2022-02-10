@@ -1,3 +1,11 @@
+/**
+ * Small utility for translating the key of the data object we get from calling
+ * the API when we ask for the user's performance data. Thanks to it, we don't
+ * need to dabble in recharts custom label for displaying the right translated key
+ * in the Radar Chart.
+ * @param type
+ * @returns {string}
+ */
 function translatePerfType(type) {
   switch (type) {
     case 'cardio':

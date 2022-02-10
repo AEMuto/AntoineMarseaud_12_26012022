@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Profil from './pages/Profil'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import SelectUser from './pages/SelectUser'
-import NotFound from './pages/NotFound'
-import { GlobalStyles } from './theme/GlobalStyles'
 import { UserProvider } from './utils/context'
+import { GlobalStyles } from './theme/GlobalStyles'
 import Nav from './components/Nav'
 import Wrapper from './components/Wrapper'
+import SelectUser from './pages/SelectUser'
+import Profil from './pages/Profil'
+import NotFound from './pages/NotFound'
 
 function Router() {
   return (

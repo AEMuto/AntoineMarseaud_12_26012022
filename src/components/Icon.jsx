@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 import { icons } from '../assets/icons/icons'
 import { colors } from '../theme/colors'
+import PropTypes from 'prop-types'
 
+/**
+ * Utilitarian function that convert the prop size key to actual value
+ * understandable in css
+ * @param size
+ * @returns {string|*}
+ */
 function getSize(size) {
   if (size === 'lg') return '8rem'
   if (size === 'md') return '4rem'
@@ -49,11 +56,28 @@ const Icon = ({ name, size, fgColor, bgColor, margin, button }) => {
         size={size}
         fgColor={fgColor}
         bgColor={bgColor}
-        margin={{ margin }}
+        margin={margin}
       >
         {icons[name]}
       </IconWrapper>
     )
+}
+
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  fgColor: PropTypes.string,
+  bgColor: PropTypes.string,
+  margin: PropTypes.string,
+  button: PropTypes.bool,
+}
+
+IconWrapper.propTypes = {
+  name: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  fgColor: PropTypes.string,
+  bgColor: PropTypes.string,
+  margin: PropTypes.string,
 }
 
 export default Icon

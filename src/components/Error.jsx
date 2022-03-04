@@ -7,7 +7,7 @@ function Error({ error }) {
     <Container>
       <h1>Oups ! Il y a eu une erreur...</h1>
       <code>
-        Message : '{error ? error.message : 'Erreur de type inconnue'}'
+        Message : '{error.message ? error.message : 'Erreur de type inconnue'}'
       </code>
       <Link to="/">Retourner à la page d'accueil</Link>
     </Container>
@@ -15,7 +15,7 @@ function Error({ error }) {
 }
 
 Error.propTypes = {
-  error: PropTypes.string.isRequired,
+  error: PropTypes.object.isRequired,
 }
 
 export default Error

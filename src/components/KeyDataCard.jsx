@@ -1,8 +1,8 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import Icon from './Icon'
 import { colors } from '../theme/colors'
 import { hexToRGB } from '../utils/hexToRGB'
-import PropTypes from 'prop-types'
 
 function KeyDataCard({ value, type }) {
   /**

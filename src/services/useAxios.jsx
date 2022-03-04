@@ -11,7 +11,7 @@ const URL = 'http://localhost:3000/user/'
  * Custom hook where we centralize our API calls and data remapping. It returns
  * an object containing three keys.
  * @param userId
- * @returns {{isLoading: boolean, data: {}, error: boolean}}
+ * @returns {{isLoading: boolean, data: {}, error: {}}}
  * 'isLoading' is used to display a loading spinner while we fetch the data.
  * 'error' is used to display an error message if an error occurs while we fetch the data.
  * 'data' contains every information we need in the charts.
@@ -19,7 +19,7 @@ const URL = 'http://localhost:3000/user/'
 export function useAxios(userId) {
   const [data, setData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState({})
 
   useEffect(() => {
     if (!userId) return

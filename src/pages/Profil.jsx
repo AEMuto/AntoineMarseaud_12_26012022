@@ -18,7 +18,7 @@ function Profil() {
   const { firstName, todayScore, keyData, activity, average, perf } = data
 
   if (isLoading) return <Loader />
-  if (error) return <Error error={error} />
+  if (error.message) return <Error error={error} />
 
   const molecules = Object.keys(keyData)
 

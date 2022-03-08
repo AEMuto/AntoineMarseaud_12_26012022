@@ -4,19 +4,21 @@ import getDay from '../utils/getDay'
 import translatePerfType from '../utils/translatePerfType'
 import wait from '../utils/wait'
 import mockData from '../mock/data'
+import api from './api'
 
-const URL = 'http://localhost:3000/user/'
+//const URL = 'http://localhost:3000/user/'
 
 /**
  * Custom hook where we centralize our API calls and data remapping. It returns
  * an object containing three keys.
- * @param userId
+ * @param {string} userId - The user uuid
+ * @param {('everything'|'activity'|'average-sessions'|'info'|'performance')} param - The allowed option
  * @returns {{isLoading: boolean, data: {}, error: {}}}
  * 'isLoading' is used to display a loading spinner while we fetch the data.
  * 'error' is used to display an error message if an error occurs while we fetch the data.
  * 'data' contains every information we need in the charts.
  */
-export function useAxios(userId) {
+export function useAPI(userId, param) {
   const [data, setData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState({})
@@ -28,9 +30,57 @@ export function useAxios(userId) {
       setIsLoading(false)
       return
     }
+
     setIsLoading(true)
-    async function getUserData() {
+
+    async function fetchData(userId, param) {
       try {
+        let fetchedData
+
+        switch (param) {
+          case 'everything':
+            const userInfo = await fetchUserData(userId)
+            console.table(userInfo)
+            const { sessions: userActivity } = await fetchUserData(
+              userId,
+              'activity'
+            )
+            console.table(userActivity)
+            const { sessions: userAverage } = await fetchUserData(
+              userId,
+              'average-sessions'
+            )
+            console.table(userAverage)
+            const userPerformance = await fetchUserData(userId, 'performance')
+            console.table(userPerformance)
+            fetchedData = {
+              userInfo,
+              userActivity,
+              userAverage,
+              userPerformance,
+            }
+            console.log(fetchedData)
+            break
+          case 'activity':
+            // Fetch user activity
+            fetchedData = await fetchUserData(userId, param)
+            break
+          case 'average-sessions':
+            //Fetch user average session
+            fetchedData = await fetchUserData(userId, param)
+            break
+          case 'performance':
+            // Fetch user performance
+            fetchedData = await fetchUserData(userId, param)
+            break
+          case 'info':
+            // Get userInfo
+            fetchedData = await fetchUserData(userId)
+            break
+          default:
+            return new Error('Invalid API path')
+        }
+
         // 1.0 Get user's info, score and key data.
         let {
           data: {
@@ -57,6 +107,8 @@ export function useAxios(userId) {
 
         // 2.1 Remapping activity data for use in Chart.
         activity = activity.map((obj) => {
+          // const date = new Date(obj.day)
+          // console.log(date.getDate())
           return {
             day: obj.day[obj.day.length - 1],
             kilogram: obj.kilogram,
@@ -114,7 +166,14 @@ export function useAxios(userId) {
         setIsLoading(false)
       }
     }
-    getUserData()
-  }, [userId])
+    fetchData(userId, param)
+  }, [userId, param])
   return { isLoading, data, error }
+}
+
+async function fetchUserData(userId, param) {
+  const {
+    data: { data },
+  } = await api.get(`${userId}${param ? '/' + param : ''}`)
+  return data
 }

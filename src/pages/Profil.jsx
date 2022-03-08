@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import styled from 'styled-components'
-import { useAxios } from '../services/useAxios'
+import { useAPI } from '../services/useAPI'
 import { UserContext } from '../utils/context'
 import Loader from '../components/Loader'
 import Error from '../components/Error'
@@ -14,7 +14,7 @@ import { colors } from '../theme/colors'
 
 function Profil() {
   const { userId } = useContext(UserContext)
-  const { data, isLoading, error } = useAxios(userId)
+  const { data, isLoading, error } = useAPI(userId, 'everything')
   const { firstName, todayScore, keyData, activity, average, perf } = data
 
   if (isLoading) return <Loader />

@@ -24,7 +24,7 @@ Then, we move into its directory.\
 
 We want to use node 12.18. The simplest way is to use [nvm](https://github.com/nvm-sh/nvm) (click the link for installation instructions).\
 `nvm install 12.18`\
-`nvm use 12.18`\
+`nvm use 12.18`
 
 Then, we install the API's dependencies with `npm i`
 

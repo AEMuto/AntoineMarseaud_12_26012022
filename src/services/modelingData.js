@@ -37,7 +37,9 @@ function modelingData(data) {
           calories: session.calories,
         }
       })
+    }
 
+    if (key === 'userAverage') {
       result.average = data['userAverage'].map((session, index) => {
         const date = new Date(data['userActivity'][index].day)
         const day = translateDay(date.getDay())

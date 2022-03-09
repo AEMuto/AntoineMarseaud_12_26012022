@@ -2,6 +2,20 @@ import styled from 'styled-components'
 import { colors } from '../../theme/colors'
 import PropTypes from 'prop-types'
 
+/**
+ * A container for each individual Chart. We use it to display the chart's title,
+ * if any, and mostly to place it in the grid we defined in our Profil component.
+ * Otherwise, there is some option in order to stylise it, like titleColor,
+ * to change the color of the title, or bgColor to change the background color, etc...
+ * @param {string} area
+ * @param {string} [bgColor]
+ * @param {string} [borderRadius]
+ * @param {React.ReactNode} children
+ * @param {string} [title]
+ * @param {string} [titleColor]
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ChartContainer({
   area,
   bgColor,

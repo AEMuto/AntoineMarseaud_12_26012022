@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import loader from '../assets/loader.svg'
 
+/**
+ * Render a loading spinner.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Loader() {
   return (
     <Container>

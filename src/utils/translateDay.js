@@ -1,25 +1,25 @@
 /**
  * A utilitarian function that returns the first letter of a day (in French).
- * It accepts any integer between 1 and 7 as its parameter, otherwise the
+ * It accepts any integer between 0 and 6 as its parameter, otherwise the
  * switch log an error message in the console and breaks.
  * @param value
  * @returns {string}
  */
-function getDay(value) {
+function translateDay(value) {
   switch (value) {
-    case 1:
+    case 0:
       return 'L'
+    case 1:
+      return 'M'
     case 2:
       return 'M'
     case 3:
-      return 'M'
-    case 4:
       return 'J'
-    case 5:
+    case 4:
       return 'V'
-    case 6:
+    case 5:
       return 'S'
-    case 7:
+    case 6:
       return 'D'
     default:
       console.log('Not a day!')
@@ -27,4 +27,4 @@ function getDay(value) {
   }
 }
 
-export default getDay
+export default translateDay

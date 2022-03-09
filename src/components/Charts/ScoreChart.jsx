@@ -4,6 +4,14 @@ import { colors } from '../../theme/colors'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+/**
+ * The component that render the score chart.
+ * @param data
+ * @param area
+ * @param title
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ScoreChart({ data, area, title }) {
   return (
     <ChartContainer area={area} title={title}>

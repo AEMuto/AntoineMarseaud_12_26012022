@@ -13,6 +13,15 @@ import ChartContainer from './ChartContainer'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+/**
+ * The component that render the activity chart
+ * @param data
+ * @param area
+ * @param title
+ * @param titleColor
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function ActivityChart({ data, area, title, titleColor }) {
   return (
     <ChartContainer area={area} title={title} titleColor={titleColor}>

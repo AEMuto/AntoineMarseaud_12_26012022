@@ -1,5 +1,13 @@
 import styled from 'styled-components'
 
+/**
+ * The App wrapper. Mainly a simple div we translate to the down-left.
+ * The value of the translation is represented in the margin of the StyledWrapper.
+ * It's calculated in function of the Nav component's size.
+ * @param {React.ReactNode} children
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Wrapper({ children }) {
   return <StyledWrapper>{children}</StyledWrapper>
 }

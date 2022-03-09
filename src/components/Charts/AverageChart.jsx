@@ -12,6 +12,15 @@ import ChartContainer from './ChartContainer'
 import { hexToRGB } from '../../utils/hexToRGB'
 import PropTypes from 'prop-types'
 
+/**
+ * The component that render the average session chart.
+ * @param data
+ * @param area
+ * @param title
+ * @param titleColor
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function AverageChart({ data, area, title, titleColor }) {
   return (
     <ChartContainer

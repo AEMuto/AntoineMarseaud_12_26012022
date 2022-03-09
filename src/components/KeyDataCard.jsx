@@ -4,6 +4,13 @@ import Icon from './Icon'
 import { colors } from '../theme/colors'
 import { hexToRGB } from '../utils/hexToRGB'
 
+/**
+ * Render the molecule cards.
+ * @param {number} value
+ * @param {string} type
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function KeyDataCard({ value, type }) {
   /**
    * Return an object we use to style correctly the keyData Card.

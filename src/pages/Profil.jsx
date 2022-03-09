@@ -12,6 +12,11 @@ import ScoreChart from '../components/Charts/ScoreChart'
 import { hexToRGB } from '../utils/hexToRGB'
 import { colors } from '../theme/colors'
 
+/**
+ * The Dashboard itself. Render all the charts. Styling and layout is done there.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Profil() {
   const { userId } = useContext(UserContext)
   const { data, isLoading, error } = useAPI(userId, 'everything')

@@ -2,6 +2,14 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+/**
+ * Our custom error component. Should be rendered whenever there is an error.
+ * Mainly when we call for external ressources. Currently, used to render the errors we get
+ * from our API calls
+ * @param {object} error
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Error({ error }) {
   return (
     <Container>

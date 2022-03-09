@@ -34,7 +34,17 @@ const IconWrapper = styled.div.attrs((props) => ({
     fill: ${({ fgColor }) => fgColor};
   }
 `
-
+/**
+ * A custom Icon component. We use it in the left Nav & in the molecules cards.
+ * @param {string} name
+ * @param {string} size
+ * @param {string} fgColor
+ * @param {string} bgColor
+ * @param {string} margin
+ * @param {boolean} button
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Icon = ({ name, size, fgColor, bgColor, margin, button }) => {
   if (button)
     return (

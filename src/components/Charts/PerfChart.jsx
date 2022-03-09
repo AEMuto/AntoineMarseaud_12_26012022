@@ -10,6 +10,13 @@ import {
 import { hexToRGB } from '../../utils/hexToRGB'
 import PropTypes from 'prop-types'
 
+/**
+ * The component that render the performance chart.
+ * @param data
+ * @param area
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function PerfChart({ data, area }) {
   return (
     <ChartContainer area={area} bgColor={colors.grey4} borderRadius="5px">

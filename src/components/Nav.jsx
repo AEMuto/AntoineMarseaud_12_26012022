@@ -5,6 +5,11 @@ import { UserContext } from '../utils/context'
 import Icon from './Icon'
 import logo from '../assets/logo.svg'
 
+/**
+ * Our Nav component. Note: It renders as a fixed element in the DOM.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Nav() {
   const { userId } = useContext(UserContext)
   return (

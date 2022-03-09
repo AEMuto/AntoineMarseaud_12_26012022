@@ -2,6 +2,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { colors } from '../theme/colors'
 
+/**
+ * Render a classic 404 page.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function NotFound() {
   return (
     <Container>

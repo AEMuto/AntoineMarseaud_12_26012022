@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { UserContext } from '../utils/context'
 
+/**
+ * The form we use to set the selected user.
+ * Might delete later when we implement the authentication feature.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function SelectUser() {
   const { userId, setUserId } = useContext(UserContext)
   const navigate = useNavigate()

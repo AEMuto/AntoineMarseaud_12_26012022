@@ -1,4 +1,3 @@
-import modelingData from './modelingData'
 import { fetchUserData } from './fetchData'
 import ModelingData from './modelingData'
 

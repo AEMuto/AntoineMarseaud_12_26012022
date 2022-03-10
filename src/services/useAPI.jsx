@@ -30,7 +30,7 @@ export function useAPI(userId, path) {
 
     async function fetchData(userId, path) {
       try {
-        const result = await handlePathAPI(userId, path)
+        const { result } = await handlePathAPI(userId, path)
         setData(result)
       } catch (error) {
         console.log(error)

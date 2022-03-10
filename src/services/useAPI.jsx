@@ -7,7 +7,7 @@ import handlePathAPI from './handlePathAPI'
  * Custom hook where we centralize our API calls and data remapping. It returns
  * an object containing three keys.
  * @param {string} userId - The user uuid
- * @param {('everything'|'activity'|'average-sessions'|'info'|'performance')} path - The API path
+ * @param {('everything'|'activity'|'average-sessions'|'info'|'performance')} path - The option for the path parameter
  * @returns {{isLoading: boolean, data: {}, error: {}}}
  * 'isLoading' is used to display a loading spinner while we fetch the data.
  * 'error' is used to display an error message if an error occurs while we fetch the data.

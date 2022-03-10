@@ -3,7 +3,7 @@ import api from './api'
 /**
  * A utilitarian function to abstract the use of the get method on our axios instance.
  * @param {string} userId - The user uuid
- * @param {('activity'|'average-sessions'|'performance')} [path] - The API path
+ * @param {('activity'|'average-sessions'|'performance')} [path] - The path existing in our API
  * @returns {Promise<*>}
  */
 export async function fetchUserData(userId, path) {

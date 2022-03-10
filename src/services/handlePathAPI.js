@@ -1,10 +1,11 @@
 import modelingData from './modelingData'
 import { fetchUserData } from './fetchData'
+import ModelingData from './modelingData'
 
 /**
  * A utilitarian function that get us the data we need, depending on the path parameter we pass in.
  * @param userId
- * @param {('everything'|'activity'|'average-sessions'|'info'|'performance')} path - The API path
+ * @param {('everything'|'activity'|'average-sessions'|'info'|'performance')} path - The options for the path parameter
  * @returns {Promise<{}|Error>}
  */
 async function handlePathAPI(userId, path) {
@@ -25,27 +26,27 @@ async function handlePathAPI(userId, path) {
 
       fetchedData.userPerformance = await fetchUserData(userId, 'performance')
 
-      return modelingData(fetchedData)
+      return new ModelingData(fetchedData)
     // ********************************
     case 'activity':
       fetchedData.userActivity = await fetchUserData(userId, path).then(
         (res) => res['sessions']
       )
-      return modelingData(fetchedData)
+      return new ModelingData(fetchedData)
     // ********************************
     case 'average-sessions':
       fetchedData.userAverage = await fetchUserData(userId, path).then(
         (res) => res['sessions']
       )
-      return modelingData(fetchedData)
+      return new ModelingData(fetchedData)
     // ********************************
     case 'performance':
       fetchedData.userPerformance = await fetchUserData(userId, path)
-      return modelingData(fetchedData)
+      return new ModelingData(fetchedData)
     // ********************************
     case 'info':
       fetchedData.userInfo = await fetchUserData(userId)
-      return modelingData(fetchedData)
+      return new ModelingData(fetchedData)
     // ********************************
     default:
       return new Error('Invalid API path')

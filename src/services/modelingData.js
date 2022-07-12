@@ -2,7 +2,7 @@ import translateDay from '../utils/translateDay'
 import translatePerfType from '../utils/translatePerfType'
 
 /**
- * Data modeling function that take a data object (created in handlePathAPI.js)
+ * Data modeling class that take a data object (created in handlePathAPI.js)
  * and basically remap it in order to consume it in our front.
  * It will only work if the correct keys exists.
  * @param data

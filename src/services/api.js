@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3000/user/'
+const baseURL = 'https://antoine-marseaud-sportsee-api.herokuapp.com/user/'
 
 /**
  * We create an axios instance to use across our services
